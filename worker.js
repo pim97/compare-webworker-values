@@ -53,8 +53,56 @@ function getValues() {
         } : 'Not available',
 
         // Permissions API (if available)
-        permissions: typeof navigator.permissions !== 'undefined'
+        permissions: typeof navigator.permissions !== 'undefined',
+
+        // Additional properties
+        ua: navigator.userAgent,
+        data: self.platform,
+        platform: self.platform,
+        fontA: 'Not available in worker',
+        fontB: 'Not available in worker',
+        fontC: 'Not available in worker',
+        canvas: 'Not available in worker',
+        gpu: 'Not available in worker',
+        hardware: `${navigator.hardwareConcurrency},${navigator.deviceMemory || 'unknown'}`,
+        gb: 'Not available in worker',
+        network: getNetworkInfo(),
+        tz: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        langs: navigator.languages.join(','),
+        window: 'unknown',
+        worker: '88783bd9', // This is a placeholder value
+        code: 'unknown', // This needs to be implemented
+        stack: getStackSize(),
+        timing: performance.now(),
+        bug: getBugInfo()
     };
+}
+
+// Helper functions
+
+function getNetworkInfo() {
+    if (navigator.connection) {
+        return `${navigator.connection.effectiveType},${navigator.connection.rtt},${navigator.connection.downlink}`;
+    }
+    return 'unknown';
+}
+
+function getStackSize() {
+    let i = 0;
+    function recurse() {
+        i++;
+        recurse();
+    }
+    try {
+        recurse();
+    } catch (e) {
+        return i;
+    }
+}
+
+function getBugInfo() {
+    // This is a placeholder. Implement actual bug checks here.
+    return 'denied,denied';
 }
 
 self.onmessage = function(event) {
