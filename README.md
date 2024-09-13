@@ -1,8 +1,6 @@
-Here's a README for your GitHub project:
-
 # Browser Environment Comparison
 
-This project provides a simple web application that compares various browser environment properties between the main thread and a Web Worker. It helps developers understand the differences and similarities in the execution contexts of these two environments.
+This project provides a simple web application that compares various browser environment properties between the main thread and a Web Worker. It helps developers understand the differences and similarities in the execution contexts of these two environments. Could be useful for detecting legit traffic.
 
 ## Features
 
